@@ -5,8 +5,8 @@ import {
   ListTodo,
   Mail,
   NotebookPen,
-  Sparkles,
 } from "lucide-react";
+import runnerIcon from "../assets/runner-icon.png";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const Route = createFileRoute("/")({
