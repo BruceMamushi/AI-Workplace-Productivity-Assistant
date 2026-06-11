@@ -18,7 +18,7 @@ import { AiDisclaimer } from "@/components/ai-disclaimer";
 import { Copy, Loader2, Mail, Wand2 } from "lucide-react";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/email")({
+export const Route = createFileRoute("/_authenticated/email")({
   head: () => ({
     meta: [
       { title: "Email Generator — AI Workplace" },

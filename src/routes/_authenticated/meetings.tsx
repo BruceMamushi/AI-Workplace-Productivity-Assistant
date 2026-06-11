@@ -11,7 +11,7 @@ import { AiDisclaimer } from "@/components/ai-disclaimer";
 import { CheckCircle, FileText, Loader2, Wand2 } from "lucide-react";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/meetings")({
+export const Route = createFileRoute("/_authenticated/meetings")({
   head: () => ({
     meta: [
       { title: "Meeting Summarizer — AI Workplace" },

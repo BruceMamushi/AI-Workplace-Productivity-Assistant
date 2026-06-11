@@ -27,7 +27,7 @@ function saveMessages(messages: UIMessage[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
 }
 
-export const Route = createFileRoute("/chat")({
+export const Route = createFileRoute("/_authenticated/chat")({
   head: () => ({
     meta: [
       { title: "AI Chatbot — AI Workplace" },
