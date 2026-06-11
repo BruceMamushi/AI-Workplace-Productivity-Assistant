@@ -128,11 +128,11 @@ function RootComponent() {
         <div className="flex flex-1 flex-col">
           <header className="flex h-14 items-center gap-2 border-b border-border bg-card px-4">
             <SidebarTrigger />
-            <div className="ml-2 text-sm font-medium text-muted-foreground">
+            <div className="ml-2 min-w-0 truncate text-sm font-medium text-muted-foreground">
               AI Workplace Productivity Assistant
             </div>
           </header>
-          <main className="flex-1 overflow-auto p-4 md:p-6">
+          <main className="flex-1 overflow-auto p-3 sm:p-4 md:p-6">
             <Outlet />
           </main>
         </div>

@@ -69,11 +69,11 @@ function EmailGenerator() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div className="space-y-1">
-        <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight text-foreground">
-          <Mail className="h-6 w-6 text-primary" />
-          Smart Email Generator
+        <h1 className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+          <Mail className="h-5 w-5 shrink-0 text-primary sm:h-6 sm:w-6" />
+          <span className="min-w-0">Smart Email Generator</span>
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-sm text-muted-foreground sm:text-base">
           Generate professional emails tailored to your audience and tone.
         </p>
       </div>
@@ -154,15 +154,15 @@ function EmailGenerator() {
 
       {result && (
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-base">Generated Email</CardTitle>
-            <Button variant="ghost" size="sm" onClick={handleCopy}>
+          <CardHeader className="flex flex-row items-center justify-between gap-2 pb-2">
+            <CardTitle className="min-w-0 truncate text-base">Generated Email</CardTitle>
+            <Button variant="ghost" size="sm" onClick={handleCopy} className="shrink-0">
               <Copy className="mr-2 h-4 w-4" />
               Copy
             </Button>
           </CardHeader>
           <CardContent>
-            <div className="whitespace-pre-wrap rounded-lg bg-muted p-4 text-sm leading-relaxed text-foreground">
+            <div className="whitespace-pre-wrap break-words rounded-lg bg-muted p-3 text-sm leading-relaxed text-foreground sm:p-4">
               {result}
             </div>
           </CardContent>

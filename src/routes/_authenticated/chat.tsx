@@ -112,20 +112,20 @@ function ChatPage() {
   const isLoading = status === "submitted" || status === "streaming";
 
   return (
-    <div className="mx-auto flex max-w-3xl flex-col gap-4">
+    <div className="mx-auto flex h-full max-w-3xl flex-col gap-4">
       <div className="space-y-1">
-        <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight text-foreground">
-          <Bot className="h-6 w-6 text-primary" />
-          AI Workplace Assistant
+        <h1 className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+          <Bot className="h-5 w-5 shrink-0 text-primary sm:h-6 sm:w-6" />
+          <span className="min-w-0">AI Workplace Assistant</span>
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-sm text-muted-foreground sm:text-base">
           Ask anything about productivity, writing, planning, or workplace tasks.
         </p>
       </div>
 
       <Card className="flex flex-1 flex-col">
         <CardContent className="flex flex-1 flex-col p-0">
-          <div className="flex-1 space-y-4 overflow-y-auto p-4">
+          <div className="flex-1 space-y-4 overflow-y-auto p-3 sm:p-4">
             {messages.length === 0 && (
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <div className="grid h-12 w-12 place-items-center rounded-full bg-primary/10">
@@ -159,7 +159,7 @@ function ChatPage() {
                   )}
 
                   <div
-                    className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                    className={`max-w-[85%] break-words rounded-2xl px-3 py-2.5 text-sm leading-relaxed sm:max-w-[80%] sm:px-4 ${
                       message.role === "user"
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-foreground"
@@ -200,7 +200,7 @@ function ChatPage() {
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="border-t border-border p-4">
+          <div className="border-t border-border p-3 sm:p-4">
             <form onSubmit={handleSubmit} className="flex items-end gap-2">
               <Textarea
                 ref={textareaRef}
