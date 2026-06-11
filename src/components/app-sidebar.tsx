@@ -23,8 +23,8 @@ import {
   LogOut,
   Mail,
   NotebookPen,
-  Sparkles,
 } from "lucide-react";
+import runnerIcon from "../assets/runner-icon.png";
 
 const items = [
   { title: "Dashboard", url: "/", icon: Home },
