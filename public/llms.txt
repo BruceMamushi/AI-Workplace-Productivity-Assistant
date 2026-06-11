@@ -1,0 +1,16 @@
+# AI Workplace Productivity Assistant
+
+> AI-powered tools to automate daily work tasks: email generation, meeting summarization, task planning, research, and conversational assistance.
+
+## Pages
+
+- [Dashboard](/): Overview of all AI productivity tools
+- [Email Generator](/email): Generate professional emails with tone and audience customization
+- [Meeting Summarizer](/meetings): Extract key points, action items, and decisions from meeting notes
+- [Task Planner](/tasks): Prioritize tasks and get smart scheduling suggestions
+- [Research Assistant](/research): Get structured insights and summaries on any topic
+- [AI Chatbot](/chat): Conversational assistant for productivity and workplace tasks
+
+## Optional
+
+- [Sitemap](/sitemap.xml)
