@@ -16,7 +16,10 @@ export const generateEmail = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => EmailInput.parse(input))
   .handler(async ({ data }) => {
     const key = process.env.LOVABLE_API_KEY;
-    if (!key) throw new Error("Missing LOVABLE_API_KEY");
+    if (!key) {
+      console.error("AI gateway key is not configured");
+      throw new Error("Service temporarily unavailable. Please try again later.");
+    }
 
     const gateway = createLovableAiGatewayProvider(key);
     const { text } = await generateText({
@@ -37,7 +40,10 @@ export const summarizeMeeting = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => MeetingInput.parse(input))
   .handler(async ({ data }) => {
     const key = process.env.LOVABLE_API_KEY;
-    if (!key) throw new Error("Missing LOVABLE_API_KEY");
+    if (!key) {
+      console.error("AI gateway key is not configured");
+      throw new Error("Service temporarily unavailable. Please try again later.");
+    }
 
     const gateway = createLovableAiGatewayProvider(key);
     const { output } = await generateText({
@@ -71,7 +77,10 @@ export const planTasks = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => TaskInput.parse(input))
   .handler(async ({ data }) => {
     const key = process.env.LOVABLE_API_KEY;
-    if (!key) throw new Error("Missing LOVABLE_API_KEY");
+    if (!key) {
+      console.error("AI gateway key is not configured");
+      throw new Error("Service temporarily unavailable. Please try again later.");
+    }
 
     const gateway = createLovableAiGatewayProvider(key);
     const { output } = await generateText({
@@ -107,7 +116,10 @@ export const researchTopic = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => ResearchInput.parse(input))
   .handler(async ({ data }) => {
     const key = process.env.LOVABLE_API_KEY;
-    if (!key) throw new Error("Missing LOVABLE_API_KEY");
+    if (!key) {
+      console.error("AI gateway key is not configured");
+      throw new Error("Service temporarily unavailable. Please try again later.");
+    }
 
     const gateway = createLovableAiGatewayProvider(key);
     const { output } = await generateText({
