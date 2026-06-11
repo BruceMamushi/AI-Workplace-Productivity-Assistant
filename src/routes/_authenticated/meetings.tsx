@@ -47,7 +47,11 @@ function MeetingSummarizer() {
     <div className="mx-auto max-w-3xl space-y-6">
       <div className="space-y-1">
         <h1 className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-          <FileText className="h-5 w-5 shrink-0 text-primary sm:h-6 sm:w-6" />
+          <img
+            src={runnerIcon}
+            alt="Runner"
+            className="h-5 w-5 shrink-0 sm:h-6 sm:w-6"
+          />
           <span className="min-w-0">Meeting Notes Summarizer</span>
         </h1>
         <p className="text-sm text-muted-foreground sm:text-base">
