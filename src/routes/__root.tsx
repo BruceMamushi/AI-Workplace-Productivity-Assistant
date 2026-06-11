@@ -118,6 +118,7 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   return (
     <SidebarProvider>
+      <MouseGlow />
       <div className="flex min-h-screen w-full">
         <AppSidebar />
         <div className="flex flex-1 flex-col">
