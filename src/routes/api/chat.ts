@@ -63,7 +63,8 @@ export const Route = createFileRoute("/api/chat")({
 
         const key = process.env.LOVABLE_API_KEY;
         if (!key) {
-          return new Response("Missing LOVABLE_API_KEY", { status: 500 });
+          console.error("AI gateway key is not configured");
+          return new Response("Internal server error", { status: 500 });
         }
 
         const gateway = createLovableAiGatewayProvider(key);
