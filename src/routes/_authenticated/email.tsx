@@ -16,6 +16,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { AiDisclaimer } from "@/components/ai-disclaimer";
 import { Copy, Loader2, Mail, Wand2 } from "lucide-react";
+import runnerIcon from "../../assets/runner-icon.png";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/email")({

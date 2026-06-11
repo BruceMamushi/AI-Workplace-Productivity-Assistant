@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/select";
 import { AiDisclaimer } from "@/components/ai-disclaimer";
 import { FlaskConical, Lightbulb, Loader2, Search, Wand2 } from "lucide-react";
+import runnerIcon from "../../assets/runner-icon.png";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated/research")({

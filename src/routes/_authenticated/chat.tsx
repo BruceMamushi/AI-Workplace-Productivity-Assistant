@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { AiDisclaimer } from "@/components/ai-disclaimer";
 import { Bot, Loader2, Send, Trash2, User } from "lucide-react";
+import runnerIcon from "../../assets/runner-icon.png";
 import ReactMarkdown from "react-markdown";
 
 const STORAGE_KEY = "ai-workplace-chat-messages";
