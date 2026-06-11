@@ -4,10 +4,10 @@ import { generateText, Output } from "ai";
 import { z } from "zod";
 
 const EmailInput = z.object({
-  purpose: z.string().min(1),
+  purpose: z.string().trim().min(1).max(500),
   tone: z.enum(["professional", "friendly", "formal", "casual", "assertive"]),
   audience: z.enum(["boss", "colleague", "client", "team", "external"]),
-  keyPoints: z.string().optional(),
+  keyPoints: z.string().max(4000).optional(),
 });
 
 export const generateEmail = createServerFn({ method: "POST" })
@@ -27,7 +27,7 @@ export const generateEmail = createServerFn({ method: "POST" })
   });
 
 const MeetingInput = z.object({
-  notes: z.string().min(1),
+  notes: z.string().trim().min(1).max(8000),
 });
 
 export const summarizeMeeting = createServerFn({ method: "POST" })
@@ -59,8 +59,8 @@ export const summarizeMeeting = createServerFn({ method: "POST" })
   });
 
 const TaskInput = z.object({
-  tasks: z.string().min(1),
-  context: z.string().optional(),
+  tasks: z.string().trim().min(1).max(8000),
+  context: z.string().max(2000).optional(),
 });
 
 export const planTasks = createServerFn({ method: "POST" })
@@ -93,9 +93,9 @@ export const planTasks = createServerFn({ method: "POST" })
   });
 
 const ResearchInput = z.object({
-  topic: z.string().min(1),
+  topic: z.string().trim().min(1).max(500),
   depth: z.enum(["brief", "detailed", "comprehensive"]),
-  focus: z.string().optional(),
+  focus: z.string().max(2000).optional(),
 });
 
 export const researchTopic = createServerFn({ method: "POST" })
