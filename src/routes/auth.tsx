@@ -14,7 +14,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Loader2, Sparkles } from "lucide-react";
+import { Loader2 } from "lucide-react";
+import runnerIcon from "../assets/runner-icon.png";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth")({
@@ -111,7 +112,7 @@ function AuthPage() {
       <div className="w-full max-w-md space-y-6">
         <div className="flex flex-col items-center gap-2 text-center">
           <div className="grid h-12 w-12 place-items-center rounded-xl bg-primary">
-            <Sparkles className="h-6 w-6 text-primary-foreground" />
+            <img src={runnerIcon} alt="Runner" className="h-6 w-6" />
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-foreground">
             AI Workplace
