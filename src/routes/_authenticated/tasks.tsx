@@ -61,11 +61,11 @@ function TaskPlanner() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div className="space-y-1">
-        <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight text-foreground">
-          <ListTodo className="h-6 w-6 text-primary" />
-          AI Task Planner
+        <h1 className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+          <ListTodo className="h-5 w-5 shrink-0 text-primary sm:h-6 sm:w-6" />
+          <span className="min-w-0">AI Task Planner</span>
         </h1>
-        <p className="text-muted-foreground">
+        <p className="text-sm text-muted-foreground sm:text-base">
           Get your tasks prioritized and scheduled for maximum productivity.
         </p>
       </div>
