@@ -8,7 +8,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { AiDisclaimer } from "@/components/ai-disclaimer";
 import { Bot, Loader2, Send, Trash2, User } from "lucide-react";
-import runnerIcon from "../../assets/runner-icon.png";
 import ReactMarkdown from "react-markdown";
 
 const STORAGE_KEY = "ai-workplace-chat-messages";
@@ -116,11 +115,7 @@ function ChatPage() {
     <div className="mx-auto flex h-full max-w-3xl flex-col gap-4">
       <div className="space-y-1">
         <h1 className="flex items-center gap-2 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-          <img
-            src={runnerIcon}
-            alt="Runner"
-            className="h-5 w-5 shrink-0 sm:h-6 sm:w-6"
-          />
+          <Bot className="h-5 w-5 shrink-0 text-primary sm:h-6 sm:w-6" />
           <span className="min-w-0">AI Workplace Assistant</span>
         </h1>
         <p className="text-sm text-muted-foreground sm:text-base">
