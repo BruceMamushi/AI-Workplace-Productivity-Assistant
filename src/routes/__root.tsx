@@ -84,9 +84,13 @@ export const Route = createRootRouteWithContext()({
       { name: "description", content: "Automate daily work tasks with AI. Email generator, meeting summarizer, task planner, research assistant, and chatbot." },
       { name: "author", content: "AI Workplace" },
       { property: "og:title", content: "AI Workplace Productivity Assistant" },
-      { property: "og:description", content: "Automate daily work tasks with AI-powered tools." },
+      { property: "og:description", content: "Automate daily work tasks with AI. Email generator, meeting summarizer, task planner, research assistant, and chatbot." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "AI Workplace Productivity Assistant" },
+      { name: "twitter:description", content: "Automate daily work tasks with AI. Email generator, meeting summarizer, task planner, research assistant, and chatbot." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5faf9176-70e1-4001-aae1-d5fd26582b7e/id-preview-418caabe--786c2202-848a-49f1-b0f0-6a94bca964ec.lovable.app-1781166601396.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5faf9176-70e1-4001-aae1-d5fd26582b7e/id-preview-418caabe--786c2202-848a-49f1-b0f0-6a94bca964ec.lovable.app-1781166601396.png" },
     ],
     links: [
       {
