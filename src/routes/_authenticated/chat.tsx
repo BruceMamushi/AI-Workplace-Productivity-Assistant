@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import { useEffect, useRef, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -27,7 +28,7 @@ function saveMessages(messages: UIMessage[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
 }
 
-export const Route = createFileRoute("/chat")({
+export const Route = createFileRoute("/_authenticated/chat")({
   head: () => ({
     meta: [
       { title: "AI Chatbot — AI Workplace" },
@@ -43,7 +44,20 @@ function ChatPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const chatTransport = new DefaultChatTransport({ api: "/api/chat" });
+  const [chatTransport] = useState(
+    () =>
+      new DefaultChatTransport({
+        api: "/api/chat",
+        fetch: (async (input: RequestInfo | URL, init?: RequestInit) => {
+          const { data } = await supabase.auth.getSession();
+          const headers = new Headers(init?.headers);
+          if (data.session) {
+            headers.set("Authorization", `Bearer ${data.session.access_token}`);
+          }
+          return fetch(input, { ...init, headers });
+        }) as typeof fetch,
+      }),
+  );
 
   const { messages, sendMessage, status, setMessages } = useChat({
     id: "ai-workplace-chat",

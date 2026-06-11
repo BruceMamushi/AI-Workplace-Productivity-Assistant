@@ -1,4 +1,5 @@
 import { createLovableAiGatewayProvider } from "@/lib/ai-gateway.server";
+import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import { createServerFn } from "@tanstack/react-start";
 import { generateText, Output } from "ai";
 import { z } from "zod";
@@ -11,6 +12,7 @@ const EmailInput = z.object({
 });
 
 export const generateEmail = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => EmailInput.parse(input))
   .handler(async ({ data }) => {
     const key = process.env.LOVABLE_API_KEY;
@@ -31,6 +33,7 @@ const MeetingInput = z.object({
 });
 
 export const summarizeMeeting = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => MeetingInput.parse(input))
   .handler(async ({ data }) => {
     const key = process.env.LOVABLE_API_KEY;
@@ -64,6 +67,7 @@ const TaskInput = z.object({
 });
 
 export const planTasks = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => TaskInput.parse(input))
   .handler(async ({ data }) => {
     const key = process.env.LOVABLE_API_KEY;
@@ -99,6 +103,7 @@ const ResearchInput = z.object({
 });
 
 export const researchTopic = createServerFn({ method: "POST" })
+  .middleware([requireSupabaseAuth])
   .inputValidator((input: unknown) => ResearchInput.parse(input))
   .handler(async ({ data }) => {
     const key = process.env.LOVABLE_API_KEY;

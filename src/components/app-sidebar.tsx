@@ -1,6 +1,7 @@
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -10,12 +11,16 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Bot,
   FlaskConical,
   Home,
   ListTodo,
+  LogIn,
+  LogOut,
   Mail,
   NotebookPen,
   Sparkles,
@@ -33,11 +38,28 @@ const items = [
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
+  const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState<string | null>(null);
   const currentPath = useRouterState({
     select: (router) => router.location.pathname,
   });
 
   const isActive = (path: string) => currentPath === path;
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setUserEmail(data.session?.user.email ?? null);
+    });
+    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUserEmail(session?.user.email ?? null);
+    });
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    navigate({ to: "/auth", replace: true });
+  };
 
   return (
     <Sidebar collapsible="icon">
@@ -79,6 +101,29 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            {userEmail ? (
+              <SidebarMenuButton onClick={handleSignOut} tooltip="Sign out">
+                <LogOut className="h-4 w-4 shrink-0" />
+                {!collapsed && (
+                  <span className="truncate" title={userEmail}>
+                    Sign out
+                  </span>
+                )}
+              </SidebarMenuButton>
+            ) : (
+              <SidebarMenuButton asChild tooltip="Sign in" isActive={isActive("/auth")}>
+                <Link to="/auth" className="flex items-center gap-2">
+                  <LogIn className="h-4 w-4 shrink-0" />
+                  {!collapsed && <span>Sign in</span>}
+                </Link>
+              </SidebarMenuButton>
+            )}
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }

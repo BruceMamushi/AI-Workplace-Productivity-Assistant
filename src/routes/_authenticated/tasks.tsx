@@ -11,7 +11,7 @@ import { AiDisclaimer } from "@/components/ai-disclaimer";
 import { Clock, ListTodo, Loader2, Wand2 } from "lucide-react";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/tasks")({
+export const Route = createFileRoute("/_authenticated/tasks")({
   head: () => ({
     meta: [
       { title: "Task Planner — AI Workplace" },

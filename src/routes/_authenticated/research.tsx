@@ -18,7 +18,7 @@ import { AiDisclaimer } from "@/components/ai-disclaimer";
 import { FlaskConical, Lightbulb, Loader2, Search, Wand2 } from "lucide-react";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/research")({
+export const Route = createFileRoute("/_authenticated/research")({
   head: () => ({
     meta: [
       { title: "Research Assistant — AI Workplace" },

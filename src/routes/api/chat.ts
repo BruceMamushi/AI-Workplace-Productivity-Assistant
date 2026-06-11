@@ -1,5 +1,6 @@
 import { createLovableAiGatewayProvider } from "@/lib/ai-gateway.server";
 import { createFileRoute } from "@tanstack/react-router";
+import { createClient } from "@supabase/supabase-js";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
 
 type ChatRequestBody = { messages?: unknown };
@@ -8,10 +9,33 @@ const MAX_BODY_BYTES = 200_000; // ~200 KB total request body
 const MAX_MESSAGES = 50;
 const MAX_MESSAGE_BYTES = 16_000; // per-message serialized size cap
 
+async function verifyAuthenticatedUser(request: Request): Promise<string | null> {
+  const authHeader = request.headers.get("authorization");
+  if (!authHeader?.startsWith("Bearer ")) return null;
+  const token = authHeader.slice("Bearer ".length);
+  if (!token) return null;
+
+  const SUPABASE_URL = process.env.SUPABASE_URL;
+  const SUPABASE_PUBLISHABLE_KEY = process.env.SUPABASE_PUBLISHABLE_KEY;
+  if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) return null;
+
+  const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
+  });
+  const { data, error } = await supabase.auth.getClaims(token);
+  if (error || !data?.claims?.sub) return null;
+  return data.claims.sub;
+}
+
 export const Route = createFileRoute("/api/chat")({
   server: {
     handlers: {
       POST: async ({ request }) => {
+        const userId = await verifyAuthenticatedUser(request);
+        if (!userId) {
+          return new Response("Unauthorized", { status: 401 });
+        }
+
         const raw = await request.text();
         if (raw.length > MAX_BODY_BYTES) {
           return new Response("Request too large", { status: 413 });
