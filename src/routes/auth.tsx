@@ -86,15 +86,15 @@ function AuthPage() {
       options: { emailRedirectTo: window.location.origin },
     });
     setIsLoading(false);
-    if (error) {
-      toast.error(
-        error.message.includes("already registered")
-          ? "This email is already registered. Try logging in instead."
-          : error.message,
-      );
-    } else {
-      toast.success("Account created! Check your email to confirm, then log in.");
+    if (error && !error.message.toLowerCase().includes("already registered")) {
+      toast.error(error.message);
+      return;
     }
+    // Same message whether or not the email is already registered,
+    // so sign-up responses can't be used to enumerate accounts.
+    toast.success(
+      "Check your inbox — if this email isn't already registered, you'll receive a confirmation link.",
+    );
   };
 
   const handleGoogle = async () => {
