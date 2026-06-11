@@ -4,13 +4,37 @@ import { convertToModelMessages, streamText, type UIMessage } from "ai";
 
 type ChatRequestBody = { messages?: unknown };
 
+const MAX_BODY_BYTES = 200_000; // ~200 KB total request body
+const MAX_MESSAGES = 50;
+const MAX_MESSAGE_BYTES = 16_000; // per-message serialized size cap
+
 export const Route = createFileRoute("/api/chat")({
   server: {
     handlers: {
       POST: async ({ request }) => {
-        const { messages } = (await request.json()) as ChatRequestBody;
+        const raw = await request.text();
+        if (raw.length > MAX_BODY_BYTES) {
+          return new Response("Request too large", { status: 413 });
+        }
+
+        let body: ChatRequestBody;
+        try {
+          body = JSON.parse(raw) as ChatRequestBody;
+        } catch {
+          return new Response("Invalid JSON", { status: 400 });
+        }
+
+        const { messages } = body;
         if (!Array.isArray(messages)) {
           return new Response("Messages are required", { status: 400 });
+        }
+        if (messages.length > MAX_MESSAGES) {
+          return new Response("Too many messages", { status: 400 });
+        }
+        for (const message of messages) {
+          if (JSON.stringify(message).length > MAX_MESSAGE_BYTES) {
+            return new Response("Message too long", { status: 400 });
+          }
         }
 
         const key = process.env.LOVABLE_API_KEY;
