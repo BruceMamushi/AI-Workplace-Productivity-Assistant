@@ -17,7 +17,7 @@ The AI Workplace Productivity Assistant is a modern web-based productivity platf
 The system features a clean SaaS-style interface with responsive design, sidebar navigation, interactive forms, and AI-generated outputs tailored to professional environments.
 
 ---
-#Prototype
+
 
 
 ## Core Features
