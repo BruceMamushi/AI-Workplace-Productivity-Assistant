@@ -74,10 +74,10 @@ function Dashboard() {
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
         {tools.map((tool) => (
           <Link key={tool.title} to={tool.url} className="group">
-            <Card className="h-full transition-all hover:shadow-md hover:border-primary/20">
+            <Card className="h-full shadow-(--shadow-card) transition-all duration-200 hover:bg-accent hover:shadow-(--shadow-card-hover) hover:border-primary/30">
               <CardHeader className="pb-3">
                 <div className={`grid h-10 w-10 place-items-center rounded-lg ${tool.color}`}>
                   <tool.icon className="h-5 w-5" />
