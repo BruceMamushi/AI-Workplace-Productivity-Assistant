@@ -98,9 +98,9 @@
   --warning: #F59E0B;
   --warning-foreground: #FFFFFF;
 
-  --border: #1E3A5F;
-  --input: #1E3A5F;
-  --ring: #4F46E5;
+  --border: #8B5CF6;
+  --input: #3B82F6;
+  --ring: #EC4899;
 
   --chart-1: #4F46E5;
   --chart-2: #10B981;
@@ -114,8 +114,8 @@
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #1A3050;
   --sidebar-accent-foreground: #F0F4F8;
-  --sidebar-border: #1E3A5F;
-  --sidebar-ring: #4F46E5;
+  --sidebar-border: #6366F1;
+  --sidebar-ring: #EC4899;
 
   --surface: #112240;
   --surface-elevated: #1A3050;
