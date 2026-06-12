@@ -21,9 +21,9 @@ export function MouseGlow() {
   return (
     <div
       ref={glowRef}
-      className="pointer-events-none fixed inset-0 z-50 opacity-40"
+      className="pointer-events-none fixed inset-0 z-50 opacity-30"
       style={{
-        background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(34,197,94,0.15), transparent 40%)`,
+        background: `radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(99,102,241,0.12), transparent 40%)`,
       }}
     />
   );
